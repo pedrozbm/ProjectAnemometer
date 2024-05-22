@@ -6,8 +6,9 @@ volatile bool estado = false;
 unsigned long timeold;
 
 void IRAM_ATTR handleInterrupt() {
-  estado = !estado; // Alterna o estado sempre que uma interrupção ocorre
-  //cont++;
+  if(estado = !estado){ // Alterna o estado sempre que uma interrupção ocorre
+  cont++;
+  }
   //Serial.println(cont);
 }
 
@@ -15,7 +16,7 @@ void setup() {
   Serial.begin(115200);
   pinMode(PinoSensor, INPUT);
   pinMode(pinoLed, OUTPUT);
-  attachInterrupt(digitalPinToInterrupt(PinoSensor), handleInterrupt, RISING); //RISING
+  attachInterrupt(digitalPinToInterrupt(PinoSensor), handleInterrupt, FALLING); //RISING
 }
 
 void loop() {
@@ -29,8 +30,7 @@ void loop() {
     }
     timeold = millis(); // Atualiza o tempo
    // Serial.println(cont);
-    cont++;
-  }
+   }
   Serial.println(cont);
 
 }
