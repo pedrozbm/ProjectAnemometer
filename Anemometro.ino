@@ -4,12 +4,13 @@
 
 
 volatile int cont = 0;
-volatile bool laststate;
+volatile bool lastState;
 volatile uint32_t debounceTimeout = 0;
 
 uint32_t saveDebounceTimeout;
 bool saveLastState;
 int save;
+portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED;
 
 void IRAM_ATTR SensorInterrupt() {
 
